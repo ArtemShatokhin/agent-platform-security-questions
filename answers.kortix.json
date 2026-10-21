@@ -1,0 +1,17 @@
+{
+  "_about": "Kortix's own answers to the twelve questions, each with the document it comes from. Kortix is open source: read the source, self-host it, check these answers yourself. Fetched 2026-10-21.",
+  "answers": {
+    "record-1": "Yes — a published list of 797 request actions, 81 events outside a request and 55 operator actions, named domain.resource.verb (for example gateway.key.revoke), filterable by prefix with `kortix audit ls --action gateway.` or `?action=gateway.` on the API. https://kortix.com/docs/audit-actions",
+    "record-2": "Export and stream both exist: `kortix audit export`, and `kortix audit webhooks add --action-prefix <prefix>` to deliver a filtered stream to your own endpoint. Metadata keeps the route template (for example `DELETE /v1/projects/:projectId/gateway/keys/:keyId`) and never the raw path, because a path segment can be a link token. https://kortix.com/docs/audit-actions",
+    "record-3": "One log, not a telemetry side-channel: it records tool calls, approval outcomes (connector.approval.approved / connector.approval.denied), secret changes (secret.strategy.changed), gateway key revocations, admin and account actions, alongside the API requests. https://kortix.com/docs/audit-actions",
+    "perm-1": "A tool call is set to allow, ask or block per tool, and a running session raises a question the person answers in the session. Agents get an explicit tool list rather than everything the project can do. https://kortix.com/docs/project/tools · https://kortix.com/docs/work/sessions",
+    "perm-2": "Read-only exemption is not assumed: an agent's tool list is explicit, so a tool that is not granted cannot be called, annotated or not. https://kortix.com/docs/project/tools",
+    "perm-3": "Secrets have a per-secret exposure mode — environment, egress-enforced or none — and are granted to named agents, so a secret is not in the project by default and not in the sandbox when the mode says so. Connector credentials are brokered server-side and never enter the machine. https://kortix.com/docs/project/secrets · https://kortix.com/about",
+    "data-1": "The project is a git repository the company owns (its own origin, cloneable with any git client), and each session runs on an isolated machine with its own branch; session output reaches the default branch only through a change request a person reads as a diff. https://kortix.com/docs/git · https://kortix.com/docs/work/sessions",
+    "data-2": "Self-hosting is documented end to end — requirements, install, bootstrap, first sign-in, securing the instance — so the platform runs on your machine and the repository stays on your origin. https://kortix.com/docs/host",
+    "data-3": "Per-project model choice: your own provider keys (Anthropic, OpenAI or any other), an OpenAI-compatible endpoint, or a connected ChatGPT subscription, with model usage going to your provider. https://kortix.com/docs/project/models · https://kortix.com/pricing",
+    "exit-1": "Agents, skills, memory, connector configuration and triggers are files in the repository you already hold; a fork is a copy. https://kortix.com/docs/project/manifest · https://kortix.com/docs/git",
+    "exit-2": "Open source: read the code, fork the tree, self-host it. There is no separately licensed organisation edition — the org layer is the repository, its permissions and the change requests. https://kortix.com/docs/host",
+    "exit-3": "The changelog is public and dated. https://kortix.com/changelog"
+  }
+}
