@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "domains": [
+    {
+      "id": "record",
+      "title": "The record of what an agent did",
+      "questions": [
+        {
+          "id": "record-1",
+          "asks": "Which actions are logged, and can I list the action names?",
+          "expect": "A published list of action names, filterable by prefix",
+          "red_flag": "Only \"we log everything\" \u2014 no list, no names to filter on"
+        },
+        {
+          "id": "record-2",
+          "asks": "How long is the log kept, and can I export it myself?",
+          "expect": "A retention period you control plus an export or stream you can pull without a support ticket",
+          "red_flag": "An export window shorter than your review cycle, or export only on the top plan"
+        },
+        {
+          "id": "record-3",
+          "asks": "Does the log cover approval decisions, credential use and admin changes \u2014 or only model calls?",
+          "expect": "One log covering tool calls, approvals, secret changes and admin actions",
+          "red_flag": "Telemetry to your SIEM offered instead of audit logging"
+        }
+      ]
+    },
+    {
+      "id": "permissions",
+      "title": "Who can approve what",
+      "questions": [
+        {
+          "id": "perm-1",
+          "asks": "Can a tool call be blocked, approved per call, or allowed to run unattended \u2014 per tool and per argument?",
+          "expect": "Per-tool policy with a human in the loop by default for anything that writes",
+          "red_flag": "A single organisation-wide toggle, or auto-approve on by default"
+        },
+        {
+          "id": "perm-2",
+          "asks": "Does a read-only tool need approval, and how does the platform know it is read-only?",
+          "expect": "The exemption applies only to tools the connector explicitly annotates as read-only",
+          "red_flag": "\"Read-only\" inferred from the request method, or every tool on a connector gated because nothing is annotated"
+        },
+        {
+          "id": "perm-3",
+          "asks": "What stops one agent from using another team's credentials?",
+          "expect": "Scopes on the agent, not on the person who created it, and credentials that never reach the sandbox",
+          "red_flag": "Shared service credentials, or secrets placed in the agent's working directory"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Where the data lives",
+      "questions": [
+        {
+          "id": "data-1",
+          "asks": "Where do session files and conversation history live, and can an admin delete them centrally?",
+          "expect": "A named location, a deletion path, and a stated retention default",
+          "red_flag": "\"On the user's computer\" with no deletion endpoint and no central control"
+        },
+        {
+          "id": "data-2",
+          "asks": "If I self-host, what still calls out to the vendor?",
+          "expect": "An explicit list of outbound calls, or none",
+          "red_flag": "Unclear, or licence terms that keep the control plane on the vendor's servers"
+        },
+        {
+          "id": "data-3",
+          "asks": "Which model providers see my content, and can I choose them?",
+          "expect": "Per-project model choice with your own keys and a documented data path",
+          "red_flag": "One provider, no key bring-your-own, no way to know what is sent"
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "title": "Getting out",
+      "questions": [
+        {
+          "id": "exit-1",
+          "asks": "If I leave, what do I take with me \u2014 agents, skills, prompts, permissions, history?",
+          "expect": "Configuration as files you already hold, plus an export of the run history",
+          "red_flag": "An export that is a JSON dump of a database you cannot read back into anything"
+        },
+        {
+          "id": "exit-2",
+          "asks": "Is the software I deployed still mine if the vendor changes its licence or terms?",
+          "expect": "A named licence for the whole tree you run, and a version you can fork",
+          "red_flag": "The layer you need is carved out of the open-source licence"
+        },
+        {
+          "id": "exit-3",
+          "asks": "What does the vendor's roadmap removal look like \u2014 has a feature you depend on ever gone away?",
+          "expect": "A changelog you can read, with deprecations dated",
+          "red_flag": "No public changelog, or features removed without a migration note"
+        }
+      ]
+    }
+  ]
+}
